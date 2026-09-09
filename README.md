@@ -15,7 +15,8 @@ This project is intentionally isolated from the existing RainX app RXC ledger. T
 - Consensus: Proof-of-Work
 - Target block time: 60 seconds
 - Initial block reward: 50 RXC
-- Maximum supply: 21,000,000 RXC
+- Halving interval: 210,000 blocks
+- Maximum supply target: 21,000,000 RXC
 - Monetary precision: 8 decimal places
 - Default network ports: P2P `27777`, RPC `27778`
 
@@ -30,6 +31,8 @@ This project is intentionally isolated from the existing RainX app RXC ledger. T
 - durable block/mempool storage using the standard library
 - TCP P2P peer protocol
 - JSON-RPC/HTTP API
+- mobile-facing address UTXO/history/block endpoints
+- permissive CORS for native clients during development
 - miner
 - wallet encryption using PBKDF2-HMAC-SHA256 + AES-256-GCM
 - browser explorer/wallet dashboard
@@ -55,3 +58,11 @@ go run ./cmd/rainxd mine --data ./data --rpc http://127.0.0.1:27778 --address RX
 ```
 
 The dashboard is available at `http://127.0.0.1:27778/`.
+
+## Mobile wallet
+
+The companion `rainx-wallet` project is a native React Native / Expo application for Android and iOS. It can create/restore a RainX wallet, keep the signing key in device secure storage, sign protocol-compatible transactions locally, read UTXOs/history, and submit signed transactions to this node.
+
+## Production warning
+
+Run the chain as a development network until multi-node interoperability, peer discovery/synchronization, difficulty retargeting, fork/reorg behavior, mempool conflict handling, crash recovery, fuzzing and an independent security audit are complete.
